@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    CANTVACP API
+                    CANTVACP API | Development Version
                 </div>
 
                 <div class="links">
