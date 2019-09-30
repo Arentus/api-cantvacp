@@ -27,10 +27,12 @@ Route::post('/budget/getById','BudgetController@getById');
 Route::post('/budget/delete','BudgetController@remove');
 
 Route::get('/budget/getAll','BudgetController@getAll');
+Route::get('/budget/getAll/id/{id}','BudgetController@getAllById');
 
 /* types routes */
 Route::post('/type','TypeController@create');
 Route::get('/type','TypeController@getAll');
+Route::get('/type/id/{id}','TypeController@getAllById');
 
 /* auth */
 Route::post('/login','AuthController@login');

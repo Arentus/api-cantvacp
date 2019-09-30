@@ -35,7 +35,6 @@ class TypeController extends Controller
 
 
     public function getAll(Request $request){
-
         return Type::all();
     }
     /**
@@ -92,5 +91,9 @@ class TypeController extends Controller
     public function destroy(Type $type)
     {
         //
+    }
+
+    public function getAllById($id){
+        return $types = Type::where('user_Id',$id)->get();
     }
 }

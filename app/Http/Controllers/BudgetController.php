@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Budget;
+use Illuminate\Support\Facades\DB;
 
 class BudgetController extends Controller
 {
@@ -63,9 +64,12 @@ class BudgetController extends Controller
     }
     //
 
-    public function getAll(Request $request){
+    public function getAll(){
+        return json_encode(Budget::paginate(10));
 
-        return Budget::all();
+    }
+    public function getAllById($id){
+        return $budgets = Budget::where('user_Id',$id)->get();
     }
     public function remove(Request $request){
 

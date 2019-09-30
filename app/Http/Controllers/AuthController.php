@@ -23,8 +23,15 @@ class AuthController extends Controller
 	            'password' => $request->password
 	        ],
 	    ]);
+        
+        $user = User::where('email',$request->username)->get();
 
-	    return json_decode((string) $response->getBody(), true); 	
+        $data = [
+            'user_data' => $user, 
+            'auth_data' => (string) $response->getBody()
+        ];
+
+	    return json_encode($data); 	    
     }
     
     public function register(Request $request){
