@@ -63,12 +63,12 @@ class BudgetController extends Controller
         return 'OK';
     }
     //
-
+    // filter by user_id
     public function getAll(){ 
         return Budget::orderBy('date','desc')->get();
     }
     public function getAllById($id){
-        $budgets = Budget::where('user_Id',$id)->orderBy('date','desc')->paginate(6);
+        $budgets = Budget::where('user_Id',$id)->orderBy('date','desc')->paginate(8);
 
         return json_encode($budgets);
     }
