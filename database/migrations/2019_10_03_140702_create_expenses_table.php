@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateControlsTable extends Migration
+class CreateExpensesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateControlsTable extends Migration
      */
     public function up()
     {
-        Schema::create('controls', function (Blueprint $table) {
+        Schema::create('expenses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('user_id');
-            $table->string('name');
+            $table->string('user_Id');
+            $table->string('control_Id');
+            $table->string('description');
+            $table->string('amount');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateControlsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('controls');
+        Schema::dropIfExists('expenses');
     }
 }

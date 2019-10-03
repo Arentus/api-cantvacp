@@ -21,6 +21,8 @@ Route::middleware('auth:api')->post('/logout','AuthController@logout');
 /* control routes*/ 
 
 Route::post('/control','ControlController@create');
+Route::get('/control/{id}','ControlController@getAll');
+Route::post('/control/delete','ControlController@destroy');
 
 /* budgets routes */
 
@@ -31,7 +33,7 @@ Route::post('/budget/delete','BudgetController@remove');
 
 Route::get('/budget/getAll/{id}','BudgetController@getAll');
 //pagination
-Route::get('/budget/getAll/id/{id}','BudgetController@getAllById');
+Route::get('/budget/getAll/id/{id}/{control_id?}','BudgetController@getAllById');
 
 /* types routes */
 Route::post('/type','TypeController@create');

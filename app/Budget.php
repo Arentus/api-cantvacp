@@ -15,6 +15,6 @@ class Budget extends Model
      * @var array
      */
     protected $fillable = [
-        'user_Id', 'nroOrder', 'nroInvoice','description', 'date','status','type','totalAmount','DRSE','DEPS','totalIncome'
+        'user_Id','control_Id', 'nroOrder', 'nroInvoice','description', 'date','status','type','totalAmount','DRSE','DEPS','totalIncome'
     ];
 }

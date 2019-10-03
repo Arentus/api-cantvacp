@@ -16,9 +16,24 @@ class TypeSeeder extends Seeder
         //
         $type = Type::create(
             [
-            	'user_Id' => 1,
-                'code' => 'XX123',
-                'name' => 'CANTV'
+            	'user_Id' => 2,
+                'code' => 'OGk6YqLISq',
+                'name' => 'Cantv'
+            ]
+        );
+
+        $type = Type::create(
+            [
+                'user_Id' => 2,
+                'code' => '666kkkiill',
+                'name' => 'Movilnet'
+            ]
+        );
+        $type = Type::create(
+            [
+                'user_Id' => 3,
+                'code' => 'KKILLLOXXXX',
+                'name' => 'Movistar'
             ]
         );
     }

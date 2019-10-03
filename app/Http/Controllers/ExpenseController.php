@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Control;
+use App\Expense;
 use Illuminate\Http\Request;
 
-class ControlController extends Controller
+class ExpenseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,21 +17,14 @@ class ControlController extends Controller
         //
     }
 
-    public function getAll($id){
-        return Control::where('user_Id',$id)->get();
-    }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        return Control::create([  
-            'user_Id' => $request->user_Id,
-            'name' => $request->name
-        ]);
-
+        //
     }
 
     /**
@@ -48,10 +41,10 @@ class ControlController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Control  $control
+     * @param  \App\Expense  $Expense
      * @return \Illuminate\Http\Response
      */
-    public function show(Control $control)
+    public function show(Expense $expense)
     {
         //
     }
@@ -59,10 +52,10 @@ class ControlController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Control  $control
+     * @param  \App\Expense  $Expense
      * @return \Illuminate\Http\Response
      */
-    public function edit(Control $control)
+    public function edit(Expense $expense)
     {
         //
     }
@@ -71,10 +64,10 @@ class ControlController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Control  $control
+     * @param  \App\Expense  $Expense
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Control $control)
+    public function update(Request $request, Expense $expense)
     {
         //
     }
@@ -82,17 +75,11 @@ class ControlController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Control  $control
+     * @param  \App\Expense  $Expense
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(Expense $expense)
     {
         //
-        $control = Control::find($request->id);
-
-        // hacer logica para eliminar todos los budgets y expenses correspondientes
-        $control->delete();
-
-        return 'OK'; 
     }
 }

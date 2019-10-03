@@ -21,6 +21,7 @@ class BudgetController extends Controller
         return Budget::create([  
             'user_Id' => $request->user_Id,
             'nroOrder' => $request->nroOrder,
+            'control_Id' => $request->control_Id,
             'nroInvoice' => $request->nroInvoice,
             'description' => $request->description,
             'date' => $request->date,
@@ -48,6 +49,8 @@ class BudgetController extends Controller
         $budget = Budget::find($request->id);
 
         $budget->user_Id = $request->user_Id;
+
+        $budget->control_Id = $request->control_Id;
         $budget->nroOrder = $request->nroOrder;
         $budget->nroInvoice = $request->nroInvoice;
         $budget->description = $request->description;
@@ -67,8 +70,16 @@ class BudgetController extends Controller
     public function getAll($id){ 
         return Budget::where('user_Id',$id)->orderBy('date','desc')->get();
     }
-    public function getAllById($id){
-        $budgets = Budget::where('user_Id',$id)->orderBy('date','desc')->paginate(8);
+    public function getAllById($id, $control_id=null){
+
+        if($control_id){
+            $budgets = Budget::where('user_Id',$id)
+                ->where('control_Id',$control_id)
+                ->orderBy('date','desc')->paginate(8);
+        }else{
+            $budgets = Budget::where('user_Id',$id)->orderBy('date','desc')->paginate(8);
+        }
+        
 
         return json_encode($budgets);
     }

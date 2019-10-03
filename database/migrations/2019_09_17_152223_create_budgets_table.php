@@ -17,6 +17,7 @@ class CreateBudgetsTable extends Migration
 
             $table->increments('id');
             $table->string('user_Id');
+            $table->string('control_Id');
 
             $table->unsignedInteger('nroOrder');
             $table->unsignedInteger('nroInvoice');
@@ -24,13 +25,13 @@ class CreateBudgetsTable extends Migration
             $table->string('description');
             $table->date('date');
             $table->string('status');
-            // run later
+        
             $table->string('type');
             
-            $table->unsignedDecimal('totalAmount', 30, 3);
-            $table->unsignedDecimal('DRSE', 30, 3);
-            $table->unsignedDecimal('DEPS', 30, 3);
-            $table->unsignedDecimal('totalIncome', 30, 3);
+            $table->unsignedDecimal('totalAmount', 30, 2);
+            $table->unsignedDecimal('DRSE', 30, 2);
+            $table->unsignedDecimal('DEPS', 30, 2);
+            $table->unsignedDecimal('totalIncome', 30, 2);
 
             $table->timestamps();
         });
