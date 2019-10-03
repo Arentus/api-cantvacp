@@ -64,8 +64,8 @@ class BudgetController extends Controller
     }
     //
     // filter by user_id
-    public function getAll(){ 
-        return Budget::orderBy('date','desc')->get();
+    public function getAll($id){ 
+        return Budget::where('user_Id',$id)->orderBy('date','desc')->get();
     }
     public function getAllById($id){
         $budgets = Budget::where('user_Id',$id)->orderBy('date','desc')->paginate(8);

@@ -18,6 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:api')->post('/logout','AuthController@logout');
+/* control routes*/ 
+
+Route::post('/control','ControlController@create');
 
 /* budgets routes */
 
@@ -26,7 +29,8 @@ Route::post('/budget/update','BudgetController@update');
 Route::post('/budget/getById','BudgetController@getById');
 Route::post('/budget/delete','BudgetController@remove');
 
-Route::get('/budget/getAll','BudgetController@getAll');
+Route::get('/budget/getAll/{id}','BudgetController@getAll');
+//pagination
 Route::get('/budget/getAll/id/{id}','BudgetController@getAllById');
 
 /* types routes */
