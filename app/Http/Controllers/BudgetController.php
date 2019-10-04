@@ -50,7 +50,6 @@ class BudgetController extends Controller
 
         $budget->user_Id = $request->user_Id;
 
-        $budget->control_Id = $request->control_Id;
         $budget->nroOrder = $request->nroOrder;
         $budget->nroInvoice = $request->nroInvoice;
         $budget->description = $request->description;
@@ -65,11 +64,24 @@ class BudgetController extends Controller
         
         return 'OK';
     }
-    //
-    // filter by user_id
-    public function getAll($id){ 
+    
+    // get budgets without pagination
+    public function getAll($id, $control_id = null){ 
+        if($control_id){
+            $budgets = Budget::where('user_Id',$id)
+                ->where('control_Id',$control_id)
+                ->orderBy('date','desc')->get();
+        }else{
+            $budgets = Budget::where('user_Id',$id)->orderBy('date','desc')->get();
+        }
+        
+
+        return json_encode($budgets);
         return Budget::where('user_Id',$id)->orderBy('date','desc')->get();
     }
+    
+    // get budgets with pagination
+
     public function getAllById($id, $control_id=null){
 
         if($control_id){

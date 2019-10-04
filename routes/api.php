@@ -31,7 +31,7 @@ Route::post('/budget/update','BudgetController@update');
 Route::post('/budget/getById','BudgetController@getById');
 Route::post('/budget/delete','BudgetController@remove');
 
-Route::get('/budget/getAll/{id}','BudgetController@getAll');
+Route::get('/budget/getAll/{id}/{control_id?}','BudgetController@getAll');
 //pagination
 Route::get('/budget/getAll/id/{id}/{control_id?}','BudgetController@getAllById');
 
