@@ -77,7 +77,6 @@ class BudgetController extends Controller
         
 
         return json_encode($budgets);
-        return Budget::where('user_Id',$id)->orderBy('date','desc')->get();
     }
     
     // get budgets with pagination
@@ -87,9 +86,9 @@ class BudgetController extends Controller
         if($control_id){
             $budgets = Budget::where('user_Id',$id)
                 ->where('control_Id',$control_id)
-                ->orderBy('date','desc')->paginate(8);
+                ->orderBy('date','desc')->paginate(4);
         }else{
-            $budgets = Budget::where('user_Id',$id)->orderBy('date','desc')->paginate(8);
+            $budgets = Budget::where('user_Id',$id)->orderBy('date','desc')->paginate(4);
         }
         
 

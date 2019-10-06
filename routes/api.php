@@ -34,6 +34,9 @@ Route::post('/budget/delete','BudgetController@remove');
 Route::get('/budget/getAll/{id}/{control_id?}','BudgetController@getAll');
 //pagination
 Route::get('/budget/getAll/id/{id}/{control_id?}','BudgetController@getAllById');
+/* expense routes*/
+Route::post('/expense','ExpenseController@create');
+Route::get('/expense/{id}/{control_id?}','ExpenseController@getAll');
 
 /* types routes */
 Route::post('/type','TypeController@create');

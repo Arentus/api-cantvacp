@@ -22,9 +22,25 @@ class ExpenseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        return Expense::create([
+            'user_Id' => $request->user_Id,
+            'control_Id' => $request->control_Id,
+            'description' => $request->description,
+            'amount' => $request->amount
+        ]);
+    }
+    public function getAll($id, $control_id = null){ 
+        if($control_id){
+            $expenses = Expense::where('user_Id',$id)
+                ->where('control_Id',$control_id)
+                ->orderBy('created_at','desc')->get();
+        }else{
+            $expenses = Expense::where('user_Id',$id)->orderBy('created_at','desc')->get();
+        }
+
+        return json_encode($expenses);
     }
 
     /**
