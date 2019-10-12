@@ -42,6 +42,8 @@ class AuthController extends Controller
             'password' => ['required', 'string', 'min:6'],
         ]);
 
+        // CUANDO SE CREA UN USUARIO SE CREA UNA CONFIGURACION POR DEFECTO
+        
         return User::create([  
             'username' => $request->username,
             'email' => $request->email,

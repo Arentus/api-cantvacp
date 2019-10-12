@@ -26,11 +26,13 @@ class ExpenseController extends Controller
     {
         return Expense::create([
             'user_Id' => $request->user_Id,
-            'control_Id' => $request->control_Id,
+            'budget_id' => $request->budget_Id,
+            'control_id' => $request->control_Id,
             'description' => $request->description,
             'amount' => $request->amount
         ]);
     }
+    
     public function getAll($id, $control_id = null){ 
         if($control_id){
             $expenses = Expense::where('user_Id',$id)
@@ -94,8 +96,11 @@ class ExpenseController extends Controller
      * @param  \App\Expense  $Expense
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Expense $expense)
-    {
-        //
+    public function remove(Request $request){
+
+        $expense = Expense::find($request->id);
+        $expense->delete();
+
+        return 'Borrado menor';
     }
 }

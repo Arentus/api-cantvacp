@@ -17,7 +17,8 @@ class CreateBudgetsTable extends Migration
 
             $table->increments('id');
             $table->string('user_Id');
-            $table->string('control_Id');
+            $table->integer('control_Id')->unsigned();
+            $table->foreign('control_Id')->references('id')->on('controls')->onDelete('cascade');
 
             $table->unsignedInteger('nroOrder');
             $table->unsignedInteger('nroInvoice');

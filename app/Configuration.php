@@ -4,11 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Expense extends Model
+class Configuration extends Model
 {
     //
     protected $fillable = [
-        'user_Id','budget_id','control_id', 'description', 'amount'
+        'user_id', 'DRSE', 'DEPS','DOLAR'
     ];
-
 }

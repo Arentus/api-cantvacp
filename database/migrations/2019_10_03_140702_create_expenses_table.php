@@ -16,7 +16,10 @@ class CreateExpensesTable extends Migration
         Schema::create('expenses', function (Blueprint $table) {
             $table->increments('id');
             $table->string('user_Id');
-            $table->string('control_Id');
+            $table->unsignedInteger('budget_id');
+            $table->unsignedInteger('control_id');
+            $table->foreign('budget_id')->references('id')->on('budgets')->onDelete('cascade');
+             $table->foreign('control_id')->references('id')->on('controls')->onDelete('cascade');
             $table->string('description');
             $table->string('amount');
             $table->timestamps();

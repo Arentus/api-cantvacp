@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\DB;
 
 class BudgetController extends Controller
 {
-    //
 
     public function create(Request $request){
     	
@@ -35,7 +34,11 @@ class BudgetController extends Controller
     }
 
     public function getById(Request $request){
-        return $budget = Budget::find($request->id);
+        return Budget::find($request->id);
+    }
+
+    public function getExpenses($id){
+        return Budget::find($id)->expenses;
     }
 
     public function update(Request $request){
@@ -70,12 +73,14 @@ class BudgetController extends Controller
         if($control_id){
             $budgets = Budget::where('user_Id',$id)
                 ->where('control_Id',$control_id)
+                ->with("budget_expenses")
                 ->orderBy('date','desc')->get();
         }else{
-            $budgets = Budget::where('user_Id',$id)->orderBy('date','desc')->get();
+            $budgets = Budget::where('user_Id',$id)
+            ->with("budget_expenses")
+            ->orderBy('date','desc')->get();
         }
         
-
         return json_encode($budgets);
     }
     
@@ -86,16 +91,19 @@ class BudgetController extends Controller
         if($control_id){
             $budgets = Budget::where('user_Id',$id)
                 ->where('control_Id',$control_id)
+                ->with("budget_expenses")
                 ->orderBy('date','desc')->paginate(4);
         }else{
-            $budgets = Budget::where('user_Id',$id)->orderBy('date','desc')->paginate(4);
+            $budgets = Budget::where('user_Id',$id)
+            ->with("budget_expenses")
+            ->orderBy('date','desc')->paginate(4);
         }
         
 
         return json_encode($budgets);
     }
     public function remove(Request $request){
-
+        
         $budget = Budget::find($request->id);
         $budget->delete();
 
