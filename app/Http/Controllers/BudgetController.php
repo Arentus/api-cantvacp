@@ -70,38 +70,28 @@ class BudgetController extends Controller
     
     // get budgets without pagination
     public function getAll($id, $control_id = null){ 
-        if($control_id){
-            $budgets = Budget::where('user_Id',$id)
+        
+        $budgets = Budget::where('user_Id',$id)
                 ->where('control_Id',$control_id)
                 ->with("budget_expenses")
                 ->orderBy('date','desc')->get();
-        }else{
-            $budgets = Budget::where('user_Id',$id)
-            ->with("budget_expenses")
-            ->orderBy('date','desc')->get();
-        }
+        
         
         return json_encode($budgets);
     }
     
     // get budgets with pagination
 
-    public function getAllById($id, $control_id=null){
+    public function getAllById($id, $control_id=null,$perPage=5){
 
-        if($control_id){
-            $budgets = Budget::where('user_Id',$id)
+        $budgets = Budget::where('user_Id',$id)
                 ->where('control_Id',$control_id)
                 ->with("budget_expenses")
-                ->orderBy('date','desc')->paginate(4);
-        }else{
-            $budgets = Budget::where('user_Id',$id)
-            ->with("budget_expenses")
-            ->orderBy('date','desc')->paginate(4);
-        }
+                ->orderBy('date','desc')->paginate($perPage);
         
-
         return json_encode($budgets);
     }
+
     public function remove(Request $request){
         
         $budget = Budget::find($request->id);

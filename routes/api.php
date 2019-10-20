@@ -23,7 +23,10 @@ Route::middleware('auth:api')->post('/logout','AuthController@logout');
 
 /* control routes*/ 
 Route::post('/control','ControlController@create');
+//get all controls for a user id
 Route::get('/control/{id}','ControlController@getAll');
+// get specific control
+Route::get('/control/id/{control_id}','ControlController@get');
 Route::post('/control/delete','ControlController@destroy');
 
 /* budgets routes */
@@ -37,7 +40,7 @@ Route::post('/budget/delete','BudgetController@remove');
 Route::get('/budget/getAll/{id}/{control_id?}','BudgetController@getAll');
 
 //pagination
-Route::get('/budget/getAll/id/{id}/{control_id?}','BudgetController@getAllById');
+Route::get('/budget/getAll/id/{id}/{control_id?}/{perPage?}','BudgetController@getAllById');
 
 /* expense routes*/
 Route::post('/expense','ExpenseController@create');
@@ -53,6 +56,14 @@ Route::get('/type/id/{id}','TypeController@getAllById');
 
 Route::post('/config/set','ConfigurationController@set');
 Route::post('/config/get','ConfigurationController@get');
+
+
+/* advances routes */
+Route::post('/advance','AdvanceController@create');
+Route::get('/advance/{id}/{control_id?}','AdvanceController@getAll');
+
+//pagination
+Route::get('/advance/pagination/{id}/{control_id?}','AdvanceController@getPagination');
 
 /* auth */
 Route::post('/login','AuthController@login');

@@ -20,6 +20,10 @@ class ControlController extends Controller
     public function getAll($id){
         return Control::where('user_Id',$id)->get();
     }
+
+    public function get($control_id){
+        return Control::where('id',$control_id)->get();
+    }
     /**
      * Show the form for creating a new resource.
      *
