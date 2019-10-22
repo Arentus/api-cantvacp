@@ -25,7 +25,7 @@ class TypeSeeder extends Seeder
         $type = Type::create(
             [
                 'user_Id' => 2,
-                'code' => '666kkkiill',
+                'code' => '712kk1jjA22',
                 'name' => 'Movilnet'
             ]
         );
