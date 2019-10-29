@@ -25,13 +25,13 @@ class AuthController extends Controller
 	    ]);
         
         $user = User::where('email',$request->username)->get();
-
+        
         $data = [
             'user_data' => $user, 
             'auth_data' => (string) $response->getBody()
         ];
 
-	    return json_encode($data); 	    
+        return json_encode($data);
     }
     
     public function register(Request $request){

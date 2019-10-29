@@ -92,6 +92,10 @@ class BudgetController extends Controller
         return json_encode($budgets);
     }
 
+    public function getSumBudgets($control_id){
+        $count = Budget::where('control_Id',$control_id)->count();
+        return $count;
+    }
     public function remove(Request $request){
         
         $budget = Budget::find($request->id);

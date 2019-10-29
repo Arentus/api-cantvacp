@@ -38,6 +38,8 @@ class ControlController extends Controller
 
     }
 
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -78,9 +80,13 @@ class ControlController extends Controller
      * @param  \App\Control  $control
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Control $control)
+    public function update(Request $request)
     {
         //
+        $control = Control::find($request->id);
+        $control->name = $request->name;
+        $control->color = $request->color;
+        $control->save();
     }
 
     /**
@@ -96,7 +102,6 @@ class ControlController extends Controller
 
         // hacer logica para eliminar todos los budgets y expenses correspondientes
         $control->delete();
-
         return 'OK'; 
     }
 }

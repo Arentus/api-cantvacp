@@ -23,11 +23,13 @@ Route::middleware('auth:api')->post('/logout','AuthController@logout');
 
 /* control routes*/ 
 Route::post('/control','ControlController@create');
+
 //get all controls for a user id
 Route::get('/control/{id}','ControlController@getAll');
 // get specific control
 Route::get('/control/id/{control_id}','ControlController@get');
 Route::post('/control/delete','ControlController@destroy');
+Route::post('/control/update','ControlController@update');
 
 /* budgets routes */
 Route::post('/budget','BudgetController@create');
@@ -38,6 +40,8 @@ Route::get('/budget/getExpenses/{id}','BudgetController@getExpenses');
 Route::post('/budget/delete','BudgetController@remove');
 // {id} es user_id 
 Route::get('/budget/getAll/{id}/{control_id?}','BudgetController@getAll');
+// get sum of budgets under a specific control 
+Route::get('/budget/sumb/{control_id}','BudgetController@getSumBudgets');
 
 //pagination
 Route::get('/budget/getAll/id/{id}/{control_id?}/{perPage?}','BudgetController@getAllById');

@@ -17,6 +17,7 @@ class CreateControlsTable extends Migration
             $table->increments('id');
             $table->string('user_id');
             $table->string('name');
+            $table->string('color')->default('#3a5adc');
             $table->timestamps();
         });
     }
