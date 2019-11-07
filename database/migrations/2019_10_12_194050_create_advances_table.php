@@ -26,7 +26,8 @@ class CreateAdvancesTable extends Migration
             $table->string('description');
             $table->integer('status');
             $table->unsignedDecimal('totalAmount', 30, 2);
-            
+            $table->unsignedDecimal('DRSE', 30, 2);
+            $table->unsignedDecimal('DEPS', 30, 2);
             $table->timestamps();
         });
     }

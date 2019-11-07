@@ -15,6 +15,6 @@ class Advance extends Model
      * @var array
      */
     protected $fillable = [
-        'user_Id','control_Id', 'type','nroOrder', 'nroInvoice','description', 'date','status','totalAmount',
+        'user_Id','control_Id', 'type','nroOrder', 'nroInvoice','description', 'date','status','totalAmount','DRSE','DEPS'
     ];
 }

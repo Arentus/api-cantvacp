@@ -24,6 +24,7 @@ class ExpenseController extends Controller
      */
     public function create(Request $request)
     {
+
         return Expense::create([
             'user_Id' => $request->user_Id,
             'budget_id' => $request->budget_Id,

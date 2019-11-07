@@ -21,7 +21,7 @@ class CreateExpensesTable extends Migration
             $table->foreign('budget_id')->references('id')->on('budgets')->onDelete('cascade');
              $table->foreign('control_id')->references('id')->on('controls')->onDelete('cascade');
             $table->string('description');
-            $table->string('amount');
+            $table->unsignedDecimal('amount',30,2);
             $table->timestamps();
         });
     }

@@ -33,8 +33,7 @@ Route::post('/control/update','ControlController@update');
 
 /* budgets routes */
 Route::post('/budget','BudgetController@create');
-Route::post('/budget/update','BudgetController@update');
-Route::post('/budget/getById','BudgetController@getById');
+Route::post('/budget/update','BudgetController@update');Route::post('/budget/getById','BudgetController@getById');
 // {id} es id // obtener los gastos
 Route::get('/budget/getExpenses/{id}','BudgetController@getExpenses');
 Route::post('/budget/delete','BudgetController@remove');
@@ -63,8 +62,12 @@ Route::post('/config/get','ConfigurationController@get');
 
 
 /* advances routes */
-Route::post('/advance','AdvanceController@create');
+Route::post('/advance','AdvanceController@new');
 Route::get('/advance/{id}/{control_id?}','AdvanceController@getAll');
+Route::post('/advance/getById','AdvanceController@getById');
+Route::post('/advance/delete','AdvanceController@remove');
+Route::post('/advance/update','AdvanceController@update');
+
 
 //pagination
 Route::get('/advance/pagination/{id}/{control_id?}','AdvanceController@getPagination');

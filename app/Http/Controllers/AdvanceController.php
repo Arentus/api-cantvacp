@@ -22,9 +22,8 @@ class AdvanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
-    {
-        //
+    public function new(Request $request)
+    {   
         return Advance::create([  
             'user_Id' => $request->user_Id,
             'control_Id' => $request->control_Id,
@@ -34,9 +33,12 @@ class AdvanceController extends Controller
             'description' => $request->description,
             'date' => $request->date,
             'status' => $request->status,
-            'totalAmount' => $request->totalAmount
+            'totalAmount' => $request->totalAmount,
+            'DRSE' => $request->DRSE,
+            'DEPS' => $request->DEPS
         ]);
     }
+
     // get advances without pagination
     public function getAll($id, $control_id = null){ 
         
@@ -54,11 +56,15 @@ class AdvanceController extends Controller
         $advances = Advance::where('user_Id',$id)
                 ->where('control_Id',$control_id)
                 ->orderBy('date','desc')
-                ->paginate(2);
+                ->paginate(10);
         
         return json_encode($advances);
     }
     
+    public function getById(Request $request){
+        return Advance::find($request->id);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -101,9 +107,36 @@ class AdvanceController extends Controller
      */
     public function update(Request $request, Advance $advance)
     {
-        //
+        
+        /*$request->validate([
+            'username' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:6'],
+        ]);*/
+
+        $advance = Advance::find($request->id);
+
+        $advance->user_Id = $request->user_Id;
+
+        $advance->nroOrder = $request->nroOrder;
+        $advance->nroInvoice = $request->nroInvoice;
+        $advance->description = $request->description;
+        $advance->date = $request->date;
+        $advance->status = $request->status;
+        $advance->type = $request->type;
+        $advance->totalAmount = $request->totalAmount;
+        $advance->DRSE = $request->DRSE;
+        $advance->DEPS = $request->DEPS;
+        $advance->save();
+        
+        return 'OK';
     }
 
+    public function remove(Request $request){
+        $advance = Advance::find($request->id);
+        $advance->delete();
+        return 'ok';
+    }
     /**
      * Remove the specified resource from storage.
      *
